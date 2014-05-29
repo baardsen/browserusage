@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="shortcut icon" href="/resources/images/favicon.ico" />
+		<title>Retriever Browser Usage</title>
+		<link rel="stylesheet" type="text/css" media="all" href="/resources/stylesheets/BrowserUsage.css">
+		<script src="http://code.jquery.com/jquery.min.js"></script>
+		<script src="http://underscorejs.org/underscore-min.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="/resources/script/BrowserUsage.js"></script>
+	</head>
+	<body>
+	    <div class="dateContainer" >
+		    <div>From: <input type="date" id="from-date" class="dataoption"/></div>
+	   	    <div>To: <input type="date" id="to-date" class="dataoption"/></div>
+    		<div>Last:
+	       		<span class="link" data-period="month">month</span>,
+			    <span class="link" data-period="3month">3 months</span>,
+			    <span class="link" data-period="6month">6 months</span>,
+                <span class="link" data-period="year">year</span>,
+			    <span class="link" data-period="always">always</span>
+		    </div>
+	    </div>
+		<span>
+			Browser limit:
+			<select id="browser-limit" class="viewoption">
+			</select>
+		</span>
+		<span>
+			Select browsers:
+			<select id="browsers" multiple class="viewoption">
+			</select>
+		</span>
+		<span>
+			Chart type:
+			<select id="chart-type" class="viewoption">
+				<option>spline
+				<option>line
+				<option selected>areaspline
+				<option>area
+				<option>column
+				<option>bar
+				<option>scatter
+			</select>
+		</span>
+		<span>
+			Stacking:
+			<select id="stacking" class="viewoption">
+				<option>
+				<option>normal
+				<option selected>percent
+			</select>
+		</span>
+		<label>
+		    <input id="sharedTooltip" type="checkbox" checked />
+		    Shared tooltip
+		</label>
+		<div id="chart-container"></div>
+		<div id="chartHeightContainer">
+		    <div>
+		        Chart height: <input type="number" min="200" max="800" value="500"/>
+		    </div>
+		    <div>
+        		<input type="range" min="200" max="800" value="500"/>
+		    </div>
+		</div>
+		<span id="downloadData" class="link">Download data</span>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, Helvetica, Freesans, Sans-serif;
+    font-size: 12px;
+}
+
+.dateContainer {
+    width:256px;
+    padding-bottom:15px;
+    padding-right:40px;
+    float:left;
+}
+
+.dateContainer > div{
+    clear:both;
+}
+
+.dateContainer > div > input[type="date"] {
+    float: right;
+}
+
+span.link {
+    cursor:pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+#chart-container {
+    padding-top: 40px;
+}
+
+#chartHeightContainer {
+    float:left;
+    padding-right:40px;
+}

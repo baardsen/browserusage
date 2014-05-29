@@ -21,3 +21,9 @@ _testmain.go
 
 *.exe
 *.test
+
+embeddedFiles.go
+
+resources/config.json
+*.p12
+*.pem
