@@ -1,13 +1,13 @@
 package main
 
 import (
-	"browserusage/webserver"
 	"browserusage/dao"
+	"browserusage/webserver"
 	"flag"
 )
 
 var (
-	port *int  = flag.Int("port", 9050, "Port number")
+	port *int = flag.Int("port", 9050, "Port number")
 )
 
 func main() {
