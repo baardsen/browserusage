@@ -2,6 +2,7 @@ package main
 
 import (
 	"browserusage/webserver"
+	"browserusage/dao"
 	"flag"
 )
 
@@ -10,6 +11,7 @@ var (
 )
 
 func main() {
+	dao.Init()
 	flag.Parse()
 	webserver.Start(*port)
 }

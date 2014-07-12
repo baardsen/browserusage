@@ -6,7 +6,6 @@ import (
 	"code.google.com/p/google-api-go-client/analytics/v3"
 	"encoding/json"
 	"encoding/gob"
-	"fmt"
 	"log"
 	"strconv"
 	"time"
@@ -38,7 +37,7 @@ var config struct {
 	TokenUri        string
 }
 
-func init() {
+func Init() {
 	tokData := resourcelocator.Locate("/resources/config.json")
 	if err := json.Unmarshal(tokData, &config); err != nil {
 		log.Fatal("dao.init", err)
@@ -46,7 +45,6 @@ func init() {
 	config.Certificate = resourcelocator.Locate(config.CertificateFile)
 	
 	cacheFile := os.TempDir() + string(os.PathSeparator) + "browserusage.dat"
-	fmt.Println(cacheFile)
 	if file, err := os.Open(cacheFile); err != nil {
 		log.Println("Couldn't open cacheFile: " + cacheFile, err)
 	} else {
@@ -122,7 +120,7 @@ func makeRequest(dataGaService *analytics.DataGaService, from time.Time, ch chan
 	}
 	rows := cache[from]
 	if rows == nil {
-		fmt.Println("Sending request: " + from.Format(format))
+		log.Println("Sending request: " + from.Format(format))
 		dataGaGetCall := dataGaService.Get(config.Profile, from.Format(format), from.AddDate(0, 0, 6).Format(format), "ga:users")
 		dataGaGetCall.Dimensions("ga:browser")
 		gaData, err := dataGaGetCall.Do()
