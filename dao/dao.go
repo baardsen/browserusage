@@ -1,15 +1,15 @@
 package dao
 
 import (
-	resourcelocator "github.com/baardsen/resourcelocator"
 	"code.google.com/p/goauth2/oauth/jwt"
 	"code.google.com/p/google-api-go-client/analytics/v3"
-	"encoding/json"
 	"encoding/gob"
+	"encoding/json"
+	resourcelocator "github.com/baardsen/resourcelocator"
 	"log"
+	"os"
 	"strconv"
 	"time"
-	"os"
 )
 
 type Point struct {
@@ -43,19 +43,19 @@ func Init() {
 		log.Fatal("dao.init", err)
 	}
 	config.Certificate = resourcelocator.Locate(config.CertificateFile)
-	
+
 	cacheFile := os.TempDir() + string(os.PathSeparator) + "browserusage.dat"
 	if file, err := os.Open(cacheFile); err != nil {
-		log.Println("Couldn't open cacheFile: " + cacheFile, err)
+		log.Println("Couldn't open cacheFile: "+cacheFile, err)
 	} else {
 		decoder := gob.NewDecoder(file)
 		decoder.Decode(&cache)
 		file.Close()
 	}
 	Query(firstDate, time.Now())
-	
+
 	if file, err := os.Create(cacheFile); err != nil {
-		log.Println("Couldn't create cacheFile: " + cacheFile, err)
+		log.Println("Couldn't create cacheFile: "+cacheFile, err)
 	} else {
 		encoder := gob.NewEncoder(file)
 		encoder.Encode(cache)
@@ -64,8 +64,9 @@ func Init() {
 }
 
 var firstDate = time.Date(2012, 4, 16, 0, 0, 0, 0, time.UTC)
+
 func Query(from, to time.Time) []Series {
-	from = from.In(time.UTC).AddDate(0, 0, int(time.Monday - from.Weekday()))
+	from = from.In(time.UTC).AddDate(0, 0, int(time.Monday-from.Weekday()))
 	if from.Before(firstDate) {
 		from = firstDate
 	}
@@ -110,7 +111,9 @@ func Query(from, to time.Time) []Series {
 }
 
 const format = "2006-01-02"
+
 var cache = make(map[time.Time][][]string)
+
 func makeRequest(dataGaService *analytics.DataGaService, from time.Time, ch chan measure, done chan struct{}) {
 	defer func() {
 		done <- struct{}{}
