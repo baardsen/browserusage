@@ -27,3 +27,4 @@ embeddedFiles.go
 resources/config.json
 *.p12
 *.pem
+.project

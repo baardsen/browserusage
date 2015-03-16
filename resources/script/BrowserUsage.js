@@ -75,7 +75,7 @@
 				formatter: function(tooltip) {
 					var points = this.points || [this],
 						sum = window.dateSums[points[0].x];
-					return tooltip.tooltipHeaderFormatter(points[0])+
+					return tooltip.tooltipFooterHeaderFormatter(points[0])+
 						_(points).map(function(point){
 							point.percentage= (point.y/sum < 0.1 ? '0' : '') + (100*point.y/sum).toFixed(2);
 							point.key = Highcharts.numberFormat(point.y, 0, ',', ' ');
