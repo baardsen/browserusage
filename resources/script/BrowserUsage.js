@@ -69,13 +69,13 @@
 		    tooltip: {
 				shared:true,
 				useHTML:true,
-				headerFormat: '{point.key}<table>',
 				pointFormat: '<tr><td style="color:{series.color}">{series.name}:</td><td style="font-weight:bold;text-align:right;">{point.key}</td><td style="font-weight:bold;text-align:right;">({point.percentage}%%)</td></tr>',
 				footerFormat: '<tr><td>Total visitors:</td><td style="font-weight:bold;text-align:right;">{total}</td></tr></table>',
 				formatter: function(tooltip) {
 					var points = this.points || [this],
-						sum = window.dateSums[points[0].x];
-					return Highcharts.format(tooltip.options.headerFormat, points[0]) +
+						sum = window.dateSums[points[0].x],
+						headerFormat = '{key:' + tooltip.options.dateTimeLabelFormats.week + '}<table>';
+					return Highcharts.format(headerFormat, points[0]) +
 						_(points).map(function(point){
 							point.percentage= (point.y/sum < 0.1 ? '0' : '') + (100*point.y/sum).toFixed(2);
 							point.key = Highcharts.numberFormat(point.y, 0, ',', ' ');
